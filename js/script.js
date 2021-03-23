@@ -115,6 +115,21 @@ const icons = [
   },
 ];
 
+const categoryColor = [
+  {
+    category: "animal",
+    color: "blue"
+  }
+  ,{
+    category: "beverage",
+    color: "green"
+  },
+  {
+    category: "food",
+    color: "red"
+  }
+];
+
 // Milestone 1
 // Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
 //
@@ -137,13 +152,43 @@ const icons = [
 // Milestone 1 con ciclo forEach
 const hook = $(".icons");
 let layoutHtml = "";
-icons.forEach((item) => {
-    let {name, family, prefix} = item;
-    layoutHtml +=`
+
+// icons.forEach((item) => {
+//
+//   let {name, family, prefix} = item;
+//
+//   layoutHtml += `
+// <div>
+//   <i class="${family} ${prefix}${name}"></i>
+//   <div class="title">${name}</div>
+// </div>`;
+// });
+// hook.append(layoutHtml);
+
+// /Milestone 1 con ciclo forEach
+// Milestone 2
+
+// Creata array Icons con aggiunta chiave color
+const coloredIcons = icons.map((item) => {
+
+  categoryColor.forEach((element) =>{
+    if(item.category == element.category){
+      item.color = element.color;
+    }
+  });
+  return(item)
+});
+// /Creata array Icons con aggiunta chiave color
+
+// Stampa array con icone colorate
+coloredIcons.forEach((item) => {
+
+  let {name, family, prefix, color} = item;
+  layoutHtml += `
 <div>
-  <i class="${family} ${prefix}${name}"></i>
+  <i class="${family} ${prefix}${name}" style= "color: ${color}"></i>
   <div class="title">${name}</div>
 </div>`;
 });
 hook.append(layoutHtml);
-// /Milestone 1 con ciclo forEach
+// /Stampa array con icone colorate
